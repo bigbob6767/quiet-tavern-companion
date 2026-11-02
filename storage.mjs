@@ -1,0 +1,8 @@
+// Browser-local, account-isolated storage. No network requests.
+export class LocalStore {
+ constructor(scope){this.scope=scope;this.db=null;this.pending=null;}
+ async open(){if(this.db)return this.db;if(!this.pending)this.pending=new Promise((resolve,reject)=>{const request=indexedDB.open('quiet-tavern-companion-v1',1);request.onupgradeneeded=()=>request.result.createObjectStore('records');request.onerror=()=>reject(new Error('Браузер не разрешил локальное хранилище. Проверь настройки сайта.'));request.onsuccess=()=>{this.db=request.result;this.db.onversionchange=()=>this.db.close();resolve(this.db);};});return this.pending;}
+ async operation(mode,key,value){const db=await this.open();return new Promise((resolve,reject)=>{const tx=db.transaction('records',mode),s=tx.objectStore('records');let r;if(mode==='readonly')r=s.get(this.scope+':'+key);else if(value===undefined)r=s.delete(this.scope+':'+key);else r=s.put(value,this.scope+':'+key);tx.oncomplete=()=>resolve(r.result);tx.onerror=tx.onabort=()=>reject(new Error('Не удалось сохранить данные в браузере. Возможно, закончилось место.'));});}
+ async entries(){const db=await this.open();return new Promise((resolve,reject)=>{const tx=db.transaction('records','readonly'),prefix=this.scope+':',out=[];const request=tx.objectStore('records').openCursor();request.onsuccess=()=>{const cursor=request.result;if(!cursor)return;if(String(cursor.key).startsWith(prefix))out.push([String(cursor.key).slice(prefix.length),cursor.value]);cursor.continue();};tx.oncomplete=()=>resolve(out);tx.onerror=()=>reject(new Error('Не удалось прочитать резервную копию.'));});}
+ get(k){return this.operation('readonly',k);}set(k,v){return this.operation('readwrite',k,v);}remove(k){return this.operation('readwrite',k);}
+}

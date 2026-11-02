@@ -1,0 +1,11 @@
+{
+  "display_name": "Тихая таверна · Компаньон",
+  "loading_order": 100,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "Private prototype",
+  "version": "0.7.8",
+  "auto_update": false
+}

@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {imagePoint,hitZone,presetZones,rectangle,touchEvent} from '../touch.mjs';
+import {buildPrompt,DEFAULTS} from '../core.mjs';
+test('Object-fit coordinates ignore horizontal empty space and retain image-space positions',()=>{const box={left:10,top:20,width:400,height:400};assert.equal(imagePoint(20,200,box,100,200),null);assert.deepEqual(imagePoint(210,220,box,100,200),{x:.5,y:.5});});
+test('Bottom-aligned image letterboxing does not become a head hit',()=>{const box={left:0,top:0,width:400,height:400};assert.equal(imagePoint(200,100,box,400,100),null);assert.deepEqual(imagePoint(200,350,box,400,100),{x:.5,y:.5});});
+test('Four distinct body zones and configurable overlap resolution',()=>{const z=presetZones('portrait');assert.equal(hitZone({x:.5,y:.1},z),'head');assert.equal(hitZone({x:.5,y:.5},z),'chest');assert.equal(hitZone({x:.5,y:.7},z),'belly');assert.equal(hitZone({x:.5,y:.9},z),'hips');assert.equal(hitZone({x:.05,y:.5},z),null);assert.equal(hitZone({x:.5,y:.5},[...z,{id:'hands',x:.48,y:.48,w:.04,h:.04}]),'hands');});
+test('Dragging either direction yields normalized rectangle',()=>{assert.deepEqual(rectangle({x:.8,y:.7},{x:.2,y:.1}),{x:.2,y:.1,w:.6000000000000001,h:.6});});
+test('Repeated touches are batched into a single semantic event without escalating action',()=>{const e=touchEvent(['head','head','belly']);assert.equal(e.repeated,3);assert.equal(e.touches.length,2);assert.equal(e.touches[0].count,2);const p=buildPrompt({settings:DEFAULTS,identity:{name:'Мика'},event:e});assert.equal(JSON.parse(p.prompt).event.touches[1].zone,'belly');assert.match(p.system,/A touch is not inherently sexual/);});

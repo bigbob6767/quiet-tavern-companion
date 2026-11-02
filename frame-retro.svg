@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560"><g fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M24 25 H1176 V535 H24Z" stroke="#28312e" stroke-width="13"/>
+<path d="M39 40 H1161 V520 H39Z" stroke="#cb7f47" stroke-width="4" stroke-dasharray="29 12"/>
+<g><path d="M20 118 V49 H42 V27 H119" stroke="#2b3430" stroke-width="12"/>
+<path d="M35 108 V56 H54 V42 H110" stroke="#c97a48" stroke-width="5"/>
+<rect x="42" y="58" width="13" height="13" fill="#e8b679" stroke="none"/>
+<rect x="62" y="40" width="12" height="12" fill="#2b3430" stroke="none"/>
+<rect x="79" y="40" width="7" height="7" fill="#e8b679" stroke="none"/>
+<path d="M23 136H39V121H23Z" fill="#b6634e" stroke="none"/></g><g transform="translate(1200 0) scale(-1 1)"><path d="M20 118 V49 H42 V27 H119" stroke="#2b3430" stroke-width="12"/>
+<path d="M35 108 V56 H54 V42 H110" stroke="#c97a48" stroke-width="5"/>
+<rect x="42" y="58" width="13" height="13" fill="#e8b679" stroke="none"/>
+<rect x="62" y="40" width="12" height="12" fill="#2b3430" stroke="none"/>
+<rect x="79" y="40" width="7" height="7" fill="#e8b679" stroke="none"/>
+<path d="M23 136H39V121H23Z" fill="#b6634e" stroke="none"/></g><g transform="translate(0 560) scale(1 -1)"><path d="M20 118 V49 H42 V27 H119" stroke="#2b3430" stroke-width="12"/>
+<path d="M35 108 V56 H54 V42 H110" stroke="#c97a48" stroke-width="5"/>
+<rect x="42" y="58" width="13" height="13" fill="#e8b679" stroke="none"/>
+<rect x="62" y="40" width="12" height="12" fill="#2b3430" stroke="none"/>
+<rect x="79" y="40" width="7" height="7" fill="#e8b679" stroke="none"/>
+<path d="M23 136H39V121H23Z" fill="#b6634e" stroke="none"/></g><g transform="translate(1200 560) scale(-1 -1)"><path d="M20 118 V49 H42 V27 H119" stroke="#2b3430" stroke-width="12"/>
+<path d="M35 108 V56 H54 V42 H110" stroke="#c97a48" stroke-width="5"/>
+<rect x="42" y="58" width="13" height="13" fill="#e8b679" stroke="none"/>
+<rect x="62" y="40" width="12" height="12" fill="#2b3430" stroke="none"/>
+<rect x="79" y="40" width="7" height="7" fill="#e8b679" stroke="none"/>
+<path d="M23 136H39V121H23Z" fill="#b6634e" stroke="none"/></g>
+<g fill="#edbc79" stroke="none"><rect x="175" y="28" width="22" height="10"/><rect x="217" y="28" width="12" height="10"/><rect x="971" y="28" width="22" height="10"/><rect x="1003" y="28" width="12" height="10"/></g>
+<path d="M553 27 H647 M553 533 H647" stroke="#a94e43" stroke-width="6"/></g></svg>

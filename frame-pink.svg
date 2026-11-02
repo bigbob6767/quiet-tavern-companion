@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560"><g fill="none" stroke-linejoin="round" stroke-linecap="round"><rect x="14" y="15" width="1172" height="530" rx="12" stroke="#d982a6" stroke-width="8"/>
+    <rect x="26" y="28" width="1148" height="504" rx="7" stroke="#fff2f3" stroke-width="3"/>
+    <path d="M108 14 H1092 M108 546 H1092" stroke="#e4b4cd" stroke-width="2"/>
+    <g><path d="M24 120 Q20 27 116 24" stroke="#db8cad" stroke-width="5"/>
+<path d="M43 96 Q54 63 79 43 Q92 32 115 32" stroke="#f7becf" stroke-width="5"/>
+<path d="M43 46 C60 51 78 57 96 77 M41 58 C61 72 73 82 79 95" stroke="#d46d95" stroke-width="2"/>
+<g stroke="#e28eaf" fill="#ffe4ed" stroke-width="2.5"><ellipse cx="47" cy="36" rx="10" ry="15" transform="rotate(-30 47 36)"/><ellipse cx="32" cy="51" rx="10" ry="15" transform="rotate(45 32 51)"/><ellipse cx="52" cy="63" rx="10" ry="15" transform="rotate(125 52 63)"/><ellipse cx="63" cy="49" rx="10" ry="15" transform="rotate(-105 63 49)"/></g>
+<circle cx="47" cy="50" r="7" fill="#ef9db8" stroke="white" stroke-width="2"/>
+<circle cx="95" cy="31" r="4" fill="#ffffff" stroke="#d46d95" stroke-width="2"/>
+<path d="M23 112 C28 95 36 86 53 83" stroke="#d46d95" stroke-width="3"/></g><g transform="translate(1200 0) scale(-1 1)"><path d="M24 120 Q20 27 116 24" stroke="#db8cad" stroke-width="5"/>
+<path d="M43 96 Q54 63 79 43 Q92 32 115 32" stroke="#f7becf" stroke-width="5"/>
+<path d="M43 46 C60 51 78 57 96 77 M41 58 C61 72 73 82 79 95" stroke="#d46d95" stroke-width="2"/>
+<g stroke="#e28eaf" fill="#ffe4ed" stroke-width="2.5"><ellipse cx="47" cy="36" rx="10" ry="15" transform="rotate(-30 47 36)"/><ellipse cx="32" cy="51" rx="10" ry="15" transform="rotate(45 32 51)"/><ellipse cx="52" cy="63" rx="10" ry="15" transform="rotate(125 52 63)"/><ellipse cx="63" cy="49" rx="10" ry="15" transform="rotate(-105 63 49)"/></g>
+<circle cx="47" cy="50" r="7" fill="#ef9db8" stroke="white" stroke-width="2"/>
+<circle cx="95" cy="31" r="4" fill="#ffffff" stroke="#d46d95" stroke-width="2"/>
+<path d="M23 112 C28 95 36 86 53 83" stroke="#d46d95" stroke-width="3"/></g><g transform="translate(0 560) scale(1 -1)"><path d="M24 120 Q20 27 116 24" stroke="#db8cad" stroke-width="5"/>
+<path d="M43 96 Q54 63 79 43 Q92 32 115 32" stroke="#f7becf" stroke-width="5"/>
+<path d="M43 46 C60 51 78 57 96 77 M41 58 C61 72 73 82 79 95" stroke="#d46d95" stroke-width="2"/>
+<g stroke="#e28eaf" fill="#ffe4ed" stroke-width="2.5"><ellipse cx="47" cy="36" rx="10" ry="15" transform="rotate(-30 47 36)"/><ellipse cx="32" cy="51" rx="10" ry="15" transform="rotate(45 32 51)"/><ellipse cx="52" cy="63" rx="10" ry="15" transform="rotate(125 52 63)"/><ellipse cx="63" cy="49" rx="10" ry="15" transform="rotate(-105 63 49)"/></g>
+<circle cx="47" cy="50" r="7" fill="#ef9db8" stroke="white" stroke-width="2"/>
+<circle cx="95" cy="31" r="4" fill="#ffffff" stroke="#d46d95" stroke-width="2"/>
+<path d="M23 112 C28 95 36 86 53 83" stroke="#d46d95" stroke-width="3"/></g><g transform="translate(1200 560) scale(-1 -1)"><path d="M24 120 Q20 27 116 24" stroke="#db8cad" stroke-width="5"/>
+<path d="M43 96 Q54 63 79 43 Q92 32 115 32" stroke="#f7becf" stroke-width="5"/>
+<path d="M43 46 C60 51 78 57 96 77 M41 58 C61 72 73 82 79 95" stroke="#d46d95" stroke-width="2"/>
+<g stroke="#e28eaf" fill="#ffe4ed" stroke-width="2.5"><ellipse cx="47" cy="36" rx="10" ry="15" transform="rotate(-30 47 36)"/><ellipse cx="32" cy="51" rx="10" ry="15" transform="rotate(45 32 51)"/><ellipse cx="52" cy="63" rx="10" ry="15" transform="rotate(125 52 63)"/><ellipse cx="63" cy="49" rx="10" ry="15" transform="rotate(-105 63 49)"/></g>
+<circle cx="47" cy="50" r="7" fill="#ef9db8" stroke="white" stroke-width="2"/>
+<circle cx="95" cy="31" r="4" fill="#ffffff" stroke="#d46d95" stroke-width="2"/>
+<path d="M23 112 C28 95 36 86 53 83" stroke="#d46d95" stroke-width="3"/></g>
+<path d="M134 30 Q240 53 350 29 T566 30 M634 30 Q753 53 860 29 T1066 30" stroke="#e7a2bd" stroke-width="2.6"/>
+<path d="M125 529 Q250 511 360 529 T570 529 M630 529 Q740 511 860 529 T1075 529" stroke="#e7a2bd" stroke-width="2.6"/>
+<g fill="#fff5f8" stroke="#db83a4" stroke-width="1.4"><circle cx="200" cy="32" r="4"/><circle cx="300" cy="32" r="4"/><circle cx="900" cy="32" r="4"/><circle cx="1000" cy="32" r="4"/></g>
+</g></svg>

@@ -1,0 +1,133 @@
+/* 0.7.4 · Original illustrated SVG frames. Imported LAST on purpose.
+   Frame and crest art remain visible even in economy/reduced-motion modes.
+   The images are original local assets, never hotlinked images or licensed fonts. */
+#quiet-tavern-companion[data-theme=pink],#qtc-settings[data-theme=pink]{--qtc-frame:url('./art/frame-pink.svg');--qtc-crest:url('./art/crest-pink.svg');--qtc-art-accent:#ca759d;--qtc-art-glow:#c64c8e40;--qtc-art-shade:#fff1f7}
+#quiet-tavern-companion[data-theme=gothic],#qtc-settings[data-theme=gothic]{--qtc-frame:url('./art/frame-gothic.svg');--qtc-crest:url('./art/crest-gothic.svg');--qtc-art-accent:#dbb480;--qtc-art-glow:#c7955465;--qtc-art-shade:#230d1b}
+#quiet-tavern-companion[data-theme=retro],#qtc-settings[data-theme=retro]{--qtc-frame:url('./art/frame-retro.svg');--qtc-crest:url('./art/crest-retro.svg');--qtc-art-accent:#c27749;--qtc-art-glow:#9b634e50;--qtc-art-shade:#eee0bd}
+#quiet-tavern-companion[data-theme=xianxia],#qtc-settings[data-theme=xianxia]{--qtc-frame:url('./art/frame-xianxia.svg');--qtc-crest:url('./art/crest-xianxia.svg');--qtc-art-accent:#9a7052;--qtc-art-glow:#78ab9960;--qtc-art-shade:#f1ead8}
+#quiet-tavern-companion[data-theme=sacred],#qtc-settings[data-theme=sacred]{--qtc-frame:url('./art/frame-sacred.svg');--qtc-crest:url('./art/crest-sacred.svg');--qtc-art-accent:#b28a4e;--qtc-art-glow:#caa06545;--qtc-art-shade:#f2e9d6}
+
+/* The old pseudo-element is a SOLID backdrop with !important background.
+   Do not use it to carry the new art. Real elements win the old cascade. */
+#quiet-tavern-companion[data-theme] .qtc-panel{
+ position:relative!important;overflow:visible!important;isolation:isolate!important;
+ border:2px solid var(--qtc-art-accent)!important;outline:0!important;
+ border-radius:13px!important;
+ background:var(--qtc-panel)!important;
+ margin-top:13px!important;
+ padding:9px 6px 5px!important;
+ box-sizing:border-box!important;
+ box-shadow:0 0 0 1px var(--qtc-art-accent),0 12px 35px #0005!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-panel::before{
+ content:''!important;display:block!important;position:absolute!important;inset:0!important;
+ border-radius:inherit!important;background:var(--qtc-panel)!important;
+ opacity:1!important;z-index:-1!important;pointer-events:none!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-panel::after{display:none!important}
+#quiet-tavern-companion[data-theme] .qtc-panel-crown{display:none!important}
+#quiet-tavern-companion[data-theme] .qtc-frame-art{
+ display:block!important;position:absolute!important;inset:-12px!important;
+ border:52px solid transparent!important;
+ border-image-source:var(--qtc-frame)!important;
+ border-image-slice:105 105 105 105 fill!important;
+ border-image-width:53px!important;
+ border-image-repeat:stretch!important;
+ z-index:5!important;pointer-events:none!important;
+ opacity:1!important;overflow:visible!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-crest-art{
+ display:block!important;position:absolute!important;
+ top:-67px!important;left:50%!important;transform:translateX(-50%)!important;
+ width:192px!important;height:90px!important;
+ background:var(--qtc-crest) center/contain no-repeat!important;
+ z-index:6!important;pointer-events:none!important;opacity:1!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-vn-nav{
+ position:relative;z-index:1;
+ padding:8px 11px 5px!important;
+ border-bottom:1px solid var(--qtc-art-accent)!important;
+ background:color-mix(in srgb,var(--qtc-panel) 80%,var(--qtc-art-accent) 20%)!important;
+ border-radius:6px!important;gap:2px!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-vn-nav button{
+ font-family:var(--qtc-ui)!important;color:var(--qtc-ink)!important;
+ border-color:transparent!important;background:transparent!important;
+ min-height:30px!important;padding:4px 6px!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-vn-nav button:hover,
+#quiet-tavern-companion[data-theme] .qtc-vn-nav button:focus-visible{border-color:var(--qtc-art-accent)!important;background:var(--qtc-soft)!important}
+#quiet-tavern-companion[data-theme] .qtc-heading{
+ position:relative;z-index:1;padding:5px 19px 4px!important;min-height:40px!important;
+}
+#quiet-tavern-companion[data-theme] .qtc-heading strong{font-family:var(--qtc-display)!important;letter-spacing:.01em!important;overflow:visible!important;max-width:52%!important;min-width:0!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+#quiet-tavern-companion[data-theme] .qtc-heading:before{color:var(--qtc-art-accent)!important;opacity:1!important}
+#quiet-tavern-companion[data-theme] .qtc-heading button{border:1px solid var(--qtc-art-accent)!important}
+#quiet-tavern-companion[data-theme] .qtc-panel-scroll{
+ position:relative;z-index:1;overflow-y:auto!important;
+ padding:2px 20px 11px!important;scrollbar-width:thin;
+}
+#quiet-tavern-companion[data-theme] .qtc-route-card{background:var(--qtc-art-shade)!important;border-color:var(--qtc-art-accent)!important;box-shadow:none!important}
+#quiet-tavern-companion[data-theme] .qtc-speech .qtc-narration{border-left-color:var(--qtc-art-accent)!important}
+#quiet-tavern-companion.qtc-economy .qtc-frame-art,#quiet-tavern-companion.qtc-economy .qtc-crest-art{display:block!important;opacity:1!important}
+#quiet-tavern-companion[data-theme=gothic] .qtc-panel{background:linear-gradient(120deg,#27111f,#341423)!important;border-radius:18px 18px 9px 9px!important}
+#quiet-tavern-companion[data-theme=gothic] .qtc-panel::before{background:linear-gradient(120deg,#27111f,#341423)!important}
+#quiet-tavern-companion[data-theme=gothic] .qtc-heading strong{font-family:'Cormorant Garamond','Cormorant Garamond',Georgia,serif!important;font-size:27px!important;font-weight:600!important}
+#quiet-tavern-companion[data-theme=gothic] .qtc-vn-nav{background:linear-gradient(90deg,#441f31,#351422,#441f31)!important}
+#quiet-tavern-companion[data-theme=gothic] .qtc-route-card{background:#2a1020!important}
+#quiet-tavern-companion[data-theme=pink] .qtc-panel{background:linear-gradient(160deg,#fffbfd,#ffeaf3)!important}
+#quiet-tavern-companion[data-theme=pink] .qtc-panel::before{background:linear-gradient(160deg,#fffbfd,#ffeaf3)!important}
+#quiet-tavern-companion[data-theme=pink] .qtc-heading strong{font-family:'Literata','Bad Script',Georgia,serif!important;font-size:23px!important}
+#quiet-tavern-companion[data-theme=retro] .qtc-panel{border-radius:1px!important;background:repeating-linear-gradient(0deg,#f0e2c3 0 26px,#f0ddbc 26px 27px)!important}
+#quiet-tavern-companion[data-theme=retro] .qtc-panel::before{background:repeating-linear-gradient(0deg,#f0e2c3 0 26px,#f0ddbc 26px 27px)!important}
+#quiet-tavern-companion[data-theme=retro] .qtc-heading strong{font-family:'Tiny5','Russo One',monospace!important;font-size:22px!important;letter-spacing:.04em!important}
+#quiet-tavern-companion[data-theme=retro] .qtc-vn-nav button{font-family:'PT Sans',monospace!important;font-weight:700!important}
+#quiet-tavern-companion[data-theme=xianxia] .qtc-panel{border-radius:7px 19px!important;background:linear-gradient(160deg,#f9f3e5,#eee5d2)!important}
+#quiet-tavern-companion[data-theme=xianxia] .qtc-panel::before{background:linear-gradient(160deg,#f9f3e5,#eee5d2)!important}
+#quiet-tavern-companion[data-theme=sacred] .qtc-panel{border-radius:18px 18px 4px 4px!important;background:linear-gradient(160deg,#fcf5e6,#f0e4d0)!important}
+#quiet-tavern-companion[data-theme=sacred] .qtc-panel::before{background:linear-gradient(160deg,#fcf5e6,#f0e4d0)!important}
+#quiet-tavern-companion[data-theme=sacred] .qtc-heading strong{font-family:'Oranienbaum','Oranienbaum',Georgia,serif!important;font-size:24px!important}
+
+/* Each theme card shows a miniature example of its actual frame, not only a scene thumbnail. */
+#qtc-settings .qtc-theme-card{position:relative!important;overflow:hidden!important}
+#qtc-settings .qtc-theme-card::after{content:'';position:absolute;inset:5px;pointer-events:none;border:28px solid transparent;border-image-slice:105 fill;border-image-width:28px;border-image-repeat:stretch;opacity:.85}
+#qtc-settings .qtc-theme-card[data-skin=pink]::after{border-image-source:url('./art/frame-pink.svg')}
+#qtc-settings .qtc-theme-card[data-skin=gothic]::after{border-image-source:url('./art/frame-gothic.svg')}
+#qtc-settings .qtc-theme-card[data-skin=retro]::after{border-image-source:url('./art/frame-retro.svg')}
+#qtc-settings .qtc-theme-card[data-skin=xianxia]::after{border-image-source:url('./art/frame-xianxia.svg')}
+#qtc-settings .qtc-theme-card[data-skin=sacred]::after{border-image-source:url('./art/frame-sacred.svg')}
+#qtc-settings .qtc-theme-card .qtc-theme-card-copy{position:relative;z-index:2}
+@media(max-width:760px){
+ #quiet-tavern-companion[data-theme] .qtc-panel{padding:6px 3px 2px!important;margin-top:9px!important}
+ #quiet-tavern-companion[data-theme] .qtc-frame-art{inset:-7px!important;border-width:36px!important;border-image-width:37px!important}
+ #quiet-tavern-companion[data-theme] .qtc-crest-art{top:-41px!important;width:140px!important;height:66px!important}
+ #quiet-tavern-companion[data-theme] .qtc-heading{padding:4px 13px 3px!important;gap:5px!important;min-height:36px!important}
+ #quiet-tavern-companion[data-theme] .qtc-heading strong{font-size:19px!important;max-width:44%!important}
+ #quiet-tavern-companion[data-theme] .qtc-panel-scroll{padding:2px 13px 9px!important}
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav{overflow-x:auto!important;scrollbar-width:none;white-space:nowrap;padding:4px 9px 3px!important;gap:1px!important}
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav button{font-size:10px!important;min-height:34px!important;padding:5px 6px!important}
+}
+@media(max-width:359px){
+ #quiet-tavern-companion[data-theme] .qtc-frame-art{inset:-6px!important;border-width:29px!important;border-image-width:30px!important}
+ #quiet-tavern-companion[data-theme] .qtc-crest-art{top:-37px!important;width:120px!important;height:57px!important}
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav button{padding:5px!important}
+}
+@media(max-height:480px) and (orientation:landscape){
+ #quiet-tavern-companion[data-theme] .qtc-crest-art{top:-32px!important;width:105px!important;height:52px!important}
+ #quiet-tavern-companion[data-theme] .qtc-panel{min-height:120px!important}
+}
+@media(prefers-reduced-motion:reduce){#quiet-tavern-companion[data-theme] .qtc-frame-art,#quiet-tavern-companion[data-theme] .qtc-crest-art{animation:none!important}}
+
+/* Very narrow phones: two compact rows instead of cutting the Settings button. */
+@media(max-width:359px){
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:1px!important;overflow:visible!important;white-space:normal!important;
+ }
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav button{
+  min-width:0!important;min-height:26px!important;
+  padding:3px 4px!important;white-space:normal!important;
+  line-height:1.05!important;font-size:9px!important;
+ }
+ #quiet-tavern-companion[data-theme] .qtc-vn-nav button[data-qtc=reveal]{margin-left:0!important}
+}

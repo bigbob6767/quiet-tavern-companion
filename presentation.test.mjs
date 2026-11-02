@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {speechParts,letters} from '../presentation.mjs';
+test('Narration and dialogue separate without changing literal HTML or unmatched stars',()=>{assert.deepEqual(speechParts('*Улыбнулась* Привет!\nКак ты?'),[{text:'Улыбнулась',action:true},{text:'Привет!',action:false},{text:'Как ты?',action:false}]);assert.equal(speechParts('<script>hi</script> *')[0].text,'<script>hi</script> *');});
+test('Typewriter keeps emoji and combining characters intact',()=>{assert.equal(letters('👩‍💻').length,1);assert.equal(letters('е́').length,1);});
