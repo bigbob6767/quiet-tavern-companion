@@ -2063,3 +2063,34 @@ body:has(#qtc-settings[open],.qtc-collection[open],#qtc-zone-editor[open]) #quie
 #quiet-tavern-companion .qtc-toolbar {display:none!important;pointer-events:none!important;}
 /* Do not leave a floating row of secondary controls when the window is shut. */
 #quiet-tavern-companion:not(.qtc-open) .qtc-footer{display:none!important;}
+
+/* 0.7.22: absolute module-relative art URLs, applied by artwork.mjs.
+   SillyTavern may inject extension CSS inline, breaking relative CSS url().
+   Preview <img> URLs now come from the ESM module and survive CSS injection. */
+#qtc-settings[data-theme] .qtc-theme-card .qtc-theme-card-art {
+  display:block!important;
+  flex-shrink:0!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  background:linear-gradient(135deg,#d6aac5,#8d9bb2)!important;
+  border-radius:0!important;
+  padding:0!important;
+  opacity:1!important;
+  filter:none!important;
+  min-width:0!important;
+}
+#qtc-settings[data-theme] .qtc-theme-card::after {
+  border-image-source:var(--qtc-card-frame,none)!important;
+}
+#qtc-settings[data-theme] .qtc-theme-card.qtc-art-unavailable .qtc-theme-card-art {
+  object-fit:contain!important;
+  background:linear-gradient(135deg,#d9b8c7,#b6a5c3)!important;
+}
+@media(max-width:560px){
+ #qtc-settings[data-theme] .qtc-theme-card .qtc-theme-card-art {
+   width:39%!important;
+   flex:0 0 39%!important;
+   height:auto!important;
+   align-self:stretch!important;
+ }
+}

@@ -1,9 +1,9 @@
 
-**0.7.21:** Убран фоновый рисунок, появлявшийся поверх обычного чата SillyTavern. Персонаж и диалог остаются по центру; фон стартового меню сохранён.
+**0.7.22:** Убран фоновый рисунок, появлявшийся поверх обычного чата SillyTavern. Персонаж и диалог остаются по центру; фон стартового меню сохранён.
 
 # Quiet Tavern Companion · Тихая таверна
 
-**Версия 0.7.21** · расширение для SillyTavern в стиле визуальной новеллы.
+**Версия 0.7.22** · расширение для SillyTavern в стиле визуальной новеллы.
 
 Интерфейс с персонажем и пятью оформлениями: **Лепестки весны** (сакура), **Полуночный вальс** (готика), **Кассетное лето** (90-е), **Нити судьбы** (сянься) и **Золотой час** (обитель). Внутри есть смена PNG-эмоций, отдельная память истории, система отношений и настройки модели.
 
@@ -15,7 +15,7 @@
 
 Либо установи содержимое ZIP как папку `quiet-tavern-companion` в каталог сторонних расширений. Перед обновлением рекомендуется сделать резервную копию через **Настройки → Память и приватность**. Не очищай данные браузера: именно там могут храниться PNG и память.
 
-## Что исправлено в 0.7.21
+## Что исправлено в 0.7.22
 
 - Убран полноэкранный фон диалога, накладывавшийся на основной чат SillyTavern.
 - Убрана полупрозрачная подложка встречи за персонажем, в том числе со старыми сохранёнными настройками.
@@ -49,7 +49,7 @@
 
 ## Предупреждение при обновлении
 
-Если в GitHub осталась папка `art/lettering` от 0.7.15, её нужно удалить вручную — загрузка новых файлов через сайт GitHub не удаляет старые. На поведение 0.7.21 она уже не влияет, но в репозитории не нужна.
+Если в GitHub осталась папка `art/lettering` от 0.7.15, её нужно удалить вручную — загрузка новых файлов через сайт GitHub не удаляет старые. На поведение 0.7.22 она уже не влияет, но в репозитории не нужна.
 
 ### 0.7.17 — переход в таверну при крупном PNG
 
@@ -61,4 +61,4 @@
 The open meeting now uses a centered visual-novel scene: the portrait stays inside a bounded viewport and dialogue appears below it. In Appearance settings, select the older side overlay if preferred. Mobile layout is unchanged.
 
 
-**0.7.21:** Removed the full-screen themed wallpaper over SillyTavern chat. Centered desktop layout now displays only the character PNG and dialogue panel; title/menu artwork remains available.
+**0.7.22:** Removed the full-screen themed wallpaper over SillyTavern chat. Centered desktop layout now displays only the character PNG and dialogue panel; title/menu artwork remains available.

@@ -5,7 +5,7 @@ const read=name=>readFile(new URL('../'+name,import.meta.url),'utf8');
 const [js,css,core,profiles,man]=await Promise.all(['index.js','style.css','core.mjs','profiles.mjs','manifest.json'].map(read));
 const m=JSON.parse(man);
 test('0.7.19 defaults to centered desktop visual novel, allows opting back to side',()=>{
- assert.equal(m.version,'0.7.21');
+ assert.equal(m.version,'0.7.22');
  assert.match(core,/dialogueWidth:520,desktopLayout:'center'/);
  assert.match(js,/Расположение сцены на ПК/);
  assert.match(js,/Сбоку — поверх чата/);

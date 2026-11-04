@@ -6,7 +6,7 @@ const css=await readFile(new URL('../style.css',import.meta.url),'utf8');
 const manifest=JSON.parse(await readFile(new URL('../manifest.json',import.meta.url),'utf8'));
 
 test('0.7.21 removes the redundant floating navigation dock',()=>{
- assert.equal(manifest.version,'0.7.21');
+ assert.equal(manifest.version,'0.7.22');
  assert.doesNotMatch(js,/class="qtc-toolbar"/);
  assert.match(css,/#quiet-tavern-companion \.qtc-toolbar \{display:none!important;pointer-events:none!important;\}/);
 });

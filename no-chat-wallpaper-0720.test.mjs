@@ -5,7 +5,7 @@ const css=await readFile(new URL('../style.css',import.meta.url),'utf8');
 const js=await readFile(new URL('../index.js',import.meta.url),'utf8');
 const manifest=JSON.parse(await readFile(new URL('../manifest.json',import.meta.url),'utf8'));
 test('0.7.20 never draws themed wallpaper over an open dialogue',()=>{
- assert.equal(manifest.version,'0.7.21');
+ assert.equal(manifest.version,'0.7.22');
  assert.doesNotMatch(css,/linear-gradient\(90deg,rgba\(12,12,20,\.50\)/);
  assert.match(css,/#quiet-tavern-companion\[data-theme\]\.qtc-open:not\(\.qtc-title-mode\)::before \{\s*content:none!important;/);
  assert.match(css,/\.qtc-open:not\(\.qtc-title-mode\) \.qtc-welcome-shade \{\s*display:none!important;/);
