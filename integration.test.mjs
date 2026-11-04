@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';import * as core from '../core.mjs';import * as profiles from '../profiles.mjs';import * as touchHelpers from '../touch.mjs';import * as presentation from '../presentation.mjs';import * as authoring from '../authoring.mjs';import * as themes from '../themes.mjs';import * as backupHelpers from '../backup.mjs';import * as perfHelpers from '../performance.mjs';import * as routeEngine from '../route-engine.mjs';import * as emotionEngine from '../emotion-engine.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';import * as core from '../core.mjs';import * as profiles from '../profiles.mjs';import * as touchHelpers from '../touch.mjs';import * as presentation from '../presentation.mjs';import * as authoring from '../authoring.mjs';import * as themes from '../themes.mjs';import * as backupHelpers from '../backup.mjs';import * as perfHelpers from '../performance.mjs';import * as routeEngine from '../route-engine.mjs';import * as emotionEngine from '../emotion-engine.mjs';const decorateLabel=()=>false;const decorateThemeCard=()=>false;
 class Element {
  constructor(){this.children=[];this.hidden=false;this.value='';this.dataset={};this.classList={toggle(){},add(){},remove(){}};this.style={setProperty(){}};this.nodes=new Map();}
  set innerHTML(v){for(const m of v.matchAll(/data-qtc="([^"]+)"/g))this.nodes.set(m[1],new Element());}
@@ -6,7 +6,7 @@ class Element {
  click(){this.clicked=true;this.onclick?.();}
  querySelectorAll(){return [];}setAttribute(){}removeAttribute(){}append(...n){this.children.push(...n)}replaceChildren(){this.children=[]}showModal(){this.open=true}close(){this.open=false}
 }
-function setup(savedSettings=null,existingData=null){const data=existingData||new Map(),events=new Map(),timers=new Set();const api={extensionSettings:savedSettings?{quiet_tavern_companion:structuredClone(savedSettings)}:{},characters:[{avatar:'mika.png',name:'Мика',data:{personality:'Сдержанная'}}],characterId:0,chatId:'A',chat:[{mes:'Привет',is_user:true,name:'User'}],name1:'Аня',eventTypes:{APP_READY:'ready',CHAT_CHANGED:'chat',MESSAGE_RECEIVED:'message',GENERATION_STARTED:'start',GENERATION_ENDED:'end'},eventSource:{on(k,fn){events.set(k,fn)}},saveSettingsDebounced(){},generateRaw:async()=>'{"text":"От неожиданности я смутилась.","emotion":"shy"}'};const body=new Element;const globals={...core,...profiles,...touchHelpers,...presentation,...authoring,...themes,...backupHelpers,...perfHelpers,...routeEngine,...emotionEngine,LocalStore:class{async get(k){return data.get(k)}async set(k,v){data.set(k,structuredClone(v))}async remove(k){data.delete(k)}},SillyTavern:{getContext:()=>api},document:{body,createElement:()=>new Element,querySelector:()=>new Element},window:{innerHeight:800,addEventListener(){}},crypto:{randomUUID:()=> 'test-account'},structuredClone,AbortController,Blob,URL,createImageBitmap:async()=>({width:1,height:1,close(){}}),console,setTimeout(fn,ms){const t=setTimeout(fn,ms);timers.add(t);return t},clearTimeout(t){clearTimeout(t);timers.delete(t)},confirm:()=>true};const context=vm.createContext(globals);let source=fs.readFileSync(new URL('../index.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'');source+='\nglobalThis.testAPI={initialize,ask,refresh,render,invalidate,showTitle,startMeeting,leave,writeSpeech,stopSpeech,openSettings,uploadImage,person,touch,changeProfile:async(id,name)=>{invalidate();if(name)addProfile(settings,id,name);else activateProfile(settings,id);await refresh();},get:()=>({scope,conversation,root,settings,busy,titleOpen,welcome}),setSnapshot:(s)=>snapshot=s};';vm.runInContext(source,context);return {api,context,events,data,body,testAPI:context.testAPI,cleanup:()=>{for(const t of timers)clearTimeout(t)}};}
+function setup(savedSettings=null,existingData=null,opts={}){const data=existingData||new Map(),events=new Map(),timers=new Set();const api={extensionSettings:savedSettings?{quiet_tavern_companion:structuredClone(savedSettings)}:{},characters:[{avatar:'mika.png',name:'Мика',data:{personality:'Сдержанная'}}],characterId:0,chatId:'A',chat:[{mes:'Привет',is_user:true,name:'User'}],name1:'Аня',eventTypes:{APP_READY:'ready',CHAT_CHANGED:'chat',MESSAGE_RECEIVED:'message',GENERATION_STARTED:'start',GENERATION_ENDED:'end'},eventSource:{on(k,fn){events.set(k,fn)}},saveSettingsDebounced(){},generateRaw:async()=>'{"text":"От неожиданности я смутилась.","emotion":"shy"}'};const body=new Element;const globals={...core,...profiles,...touchHelpers,...presentation,...authoring,...themes,...backupHelpers,...perfHelpers,...routeEngine,...emotionEngine,decorateLabel,decorateThemeCard,LocalStore:class{async get(k){return data.get(k)}async set(k,v){data.set(k,structuredClone(v))}async remove(k){data.delete(k)}},SillyTavern:{getContext:()=>api},document:{body,createElement:()=>new Element,querySelector:()=>new Element},window:{innerHeight:800,addEventListener(){}},crypto:Object.prototype.hasOwnProperty.call(opts,'crypto')?opts.crypto:{randomUUID:()=> 'test-account'},structuredClone,AbortController,Blob,URL,createImageBitmap:async()=>({width:1,height:1,close(){}}),console,setTimeout(fn,ms){const t=setTimeout(fn,ms);timers.add(t);return t},clearTimeout(t){clearTimeout(t);timers.delete(t)},confirm:()=>true};const context=vm.createContext(globals);let source=fs.readFileSync(new URL('../index.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'');source+='\nglobalThis.testAPI={initialize,ask,refresh,render,invalidate,showTitle,startMeeting,leave,writeSpeech,stopSpeech,openSettings,uploadImage,person,touch,changeProfile:async(id,name)=>{invalidate();if(name)addProfile(settings,id,name);else activateProfile(settings,id);await refresh();},get:()=>({scope,conversation,root,settings,busy,titleOpen,welcome}),setupMiniDragging,positionMini,setSnapshot:(s)=>snapshot=s};';vm.runInContext(source,context);return {api,context,events,data,body,testAPI:context.testAPI,cleanup:()=>{for(const t of timers)clearTimeout(t)}};}
 test('Real action generation uses current API, does not add plot messages, saves separate reply',async()=>{const env=setup();try{await env.testAPI.initialize();let request;env.api.generateRaw=async p=>{request=p;return '{"text":"Я смутилась от поцелуя.","emotion":"shy"}'};await env.testAPI.ask({kind:'action',text:'Поцеловать тебя'});assert.equal(JSON.parse(request.prompt).event.text,'Поцеловать тебя');assert.equal(env.api.chat.length,1);assert.equal(env.testAPI.get().conversation.memory.length,2);assert.equal(env.testAPI.get().conversation.memory[1].text,'Я смутилась от поцелуя.');}finally{env.cleanup()}});
 test('Changing chat discards in-flight reply',async()=>{const env=setup();try{await env.testAPI.initialize();let resolve;env.api.generateRaw=()=>new Promise(r=>resolve=r);const pending=env.testAPI.ask({kind:'action',text:'Обнять'});env.testAPI.invalidate();env.api.chatId='B';await env.testAPI.refresh();resolve('{"text":"OLD CHAT RESPONSE","emotion":"happy"}');await pending;assert.equal(env.testAPI.get().conversation.memory.length,0);assert.equal(env.testAPI.get().busy,false);}finally{env.cleanup()}});
 test('Separate profile uses service, abort signal and never switches main connection',async()=>{const env=setup();try{await env.testAPI.initialize();env.testAPI.get().settings.profile='cheap-profile';let request;env.api.ConnectionManagerRequestService={async sendRequest(...args){request=args;return {content:'{"text":"Спасибо за чай!","emotion":"happy"}'}}};env.api.generateRaw=()=>{throw Error('Wrong route')};await env.testAPI.ask({kind:'action',text:'Угостить чаем'});assert.equal(request[0],'cheap-profile');assert.equal(request[3].stream,false);assert.ok(request[3].signal instanceof AbortSignal);assert.equal(env.testAPI.get().conversation.memory[1].text,'Спасибо за чай!');}finally{env.cleanup()}});
@@ -160,3 +160,100 @@ test('When expression PNG is absent, report missing slot instead of pretending n
   assert.match(root.querySelector('[data-qtc="status"]').textContent,/не загружена PNG/);
  }finally{env.cleanup();}
 });
+
+test('Model connection check stays inside settings and does not open a blocking chat overlay', async()=>{
+ const env=setup();try{
+  await env.testAPI.initialize();await env.testAPI.openSettings();
+  const state=env.testAPI.get(),titleBefore=state.titleOpen,historyBefore=state.conversation.memory.length;
+  const nodes=(n)=>[n,...n.children.flatMap(nodes)];
+  nodes(env.body).forEach(n=>n.isConnected=true);const button=nodes(env.body).find(n=>n.textContent==='Проверить ответ модели');assert.ok(button);
+  let requests=0;env.api.generateRaw=async()=>{requests++;return 'Привет, всё работает.'};
+  await button.onclick();
+  assert.equal(requests,1);
+  assert.equal(env.testAPI.get().titleOpen,titleBefore);
+  assert.equal(env.testAPI.get().conversation.memory.length,historyBefore);
+  assert.equal(env.testAPI.get().root.querySelector('[data-qtc="panel"]').hidden,true);
+  const status=nodes(env.body).find(n=>String(n.textContent||'').includes('Подключение работает.'));
+  assert.ok(status);
+ }finally{env.cleanup()}
+});
+
+test('Closing a companion dialogue from welcome leaves the fullscreen overlay',async()=>{
+ const env=setup();try{
+  await env.testAPI.initialize();env.testAPI.startMeeting();await new Promise(r=>setTimeout(r,25));
+  const root=env.testAPI.get().root;
+  root.querySelector('[data-qtc="close"]').onclick();
+  await new Promise(r=>setTimeout(r,210));
+  assert.equal(env.testAPI.get().welcome,false);
+  assert.equal(root.querySelector('[data-qtc="panel"]').hidden,true);
+ }finally{env.cleanup()}
+});
+
+test('Floating chat button can be dragged and its relative location survives saving and reload', async()=>{
+ const env=setup();let after;try{
+  await env.testAPI.initialize();
+  const root=env.testAPI.get().root, mini=root.querySelector('[data-qtc="mini"]');
+  const callbacks={};mini.addEventListener=(name,fn)=>{callbacks[name]=fn};
+  mini.isConnected=true;mini.offsetWidth=100;mini.offsetHeight=54;
+  root.getBoundingClientRect=()=>({left:0,top:0,width:390,height:780});
+  mini.getBoundingClientRect=()=>({left:Number.parseFloat(mini.style.left)||268,top:Number.parseFloat(mini.style.top)||695,width:100,height:54});
+  mini.style.setProperty=(name,value)=>{mini.style[name]=value};
+  env.testAPI.setupMiniDragging();
+  callbacks.pointerdown({pointerId:3,button:0,clientX:320,clientY:710});
+  callbacks.pointermove({pointerId:3,button:0,clientX:130,clientY:340,cancelable:true,preventDefault(){}});
+  callbacks.pointerup({pointerId:3,button:0,clientX:130,clientY:340});
+  const pos=env.testAPI.get().settings.miniPosition;
+  assert.ok(pos.x>=0&&pos.x<=1&&pos.y>=0&&pos.y<=1);
+  assert.ok(pos.y<0.6);
+  assert.ok(pos.x<0.5);
+  after=setup(env.testAPI.get().settings,env.data);await after.testAPI.initialize();
+  assert.equal(after.testAPI.get().settings.miniPosition.x,pos.x);
+  assert.equal(after.testAPI.get().settings.miniPosition.y,pos.y);
+ }finally{env.cleanup();after?.cleanup()}
+});
+
+
+test('HTTP origin without crypto.randomUUID boots and can create a companion profile', async()=>{
+ const env=setup(null,null,{crypto:undefined});
+ try{
+  await env.testAPI.initialize();
+  const initial=env.testAPI.get().settings;
+  assert.match(initial.storageId,/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  await env.testAPI.openSettings();
+  const all=n=>[n,...n.children.flatMap(all)];
+  const input=all(env.body).find(n=>String(n.placeholder||'').includes('Имя нового профиля'));
+  const create=all(env.body).find(n=>n.textContent==='＋ Создать профиль');
+  assert.ok(input&&create);
+  input.value='Луна';
+  await create.onclick();
+  assert.equal(env.testAPI.get().settings.companionProfiles.at(-1).name,'Луна');
+ }finally{env.cleanup()}
+});
+
+test('Restricted UUID API uses getRandomValues and does not prevent startup',async()=>{
+ let randomCalls=0;
+ const env=setup(null,null,{crypto:{randomUUID(){throw new Error('API unavailable')},getRandomValues(buf){randomCalls++;for(let i=0;i<buf.length;i++)buf[i]=i+1;return buf;}}});
+ try{
+  await env.testAPI.initialize();
+  assert.equal(randomCalls,1);
+  assert.match(env.testAPI.get().settings.storageId,/^01020304-0506-4708-890a-0b0c0d0e0f10$/);
+ }finally{env.cleanup()}
+});
+
+test('Extensions settings toggle hides and restores companion without erasing memory',async()=>{
+ const env=setup();try{
+  await env.testAPI.initialize();
+  const toggle=vm.runInContext('extensionEnabledToggle',env.context);
+  assert.ok(toggle);
+  assert.equal(toggle.checked,true);
+  const previousStore=env.testAPI.get().settings.storageId;
+  toggle.checked=false;toggle.onchange();
+  assert.equal(env.testAPI.get().settings.enabled,false);
+  assert.equal(env.testAPI.get().root.hidden,true);
+  toggle.checked=true;toggle.onchange();
+  assert.equal(env.testAPI.get().settings.enabled,true);
+  assert.equal(env.testAPI.get().root.hidden,false);
+  assert.equal(env.testAPI.get().settings.storageId,previousStore);
+ }finally{env.cleanup()}
+});
+

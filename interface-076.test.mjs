@@ -15,9 +15,9 @@ test('Each theme provides offline vector wordmark with Cyrillic outlines',async(
 });
 test('Settings and title menus have themed art in final stylesheet, with mobile rules',async()=>{
  const style=await readFile(resolve(root,'style.css'),'utf8');
- const css=await readFile(resolve(root,'interface-076.css'),'utf8');
+ const css=style;
  const js=await readFile(resolve(root,'index.js'),'utf8');
- assert.ok(style.lastIndexOf('interface-076.css')>style.lastIndexOf('ornate.css'));
+ assert.ok(style.indexOf('/* ============ interface-076.css')>style.indexOf('/* ============ ornate.css'));
  assert.match(css,/#qtc-settings\[data-theme\]::after/);
  assert.match(css,/#quiet-tavern-companion\[data-theme\] \.qtc-title-menu::after/);
  assert.match(css,/@media\(max-width:760px\)/);

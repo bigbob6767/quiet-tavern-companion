@@ -18,11 +18,10 @@ test('Five complete ornamental frame and crest SVG files are local and loadable'
 test('Decoration is real DOM and final stylesheet overrides the old hidden crown and economy rules',async()=>{
  const js=await readFile(resolve(dir,'index.js'),'utf8');
  const root=await readFile(resolve(dir,'style.css'),'utf8');
- const css=await readFile(resolve(dir,'ornate.css'),'utf8');
+ const css=root;
  assert.match(js,/class="qtc-frame-art"/);
  assert.match(js,/class="qtc-crest-art"/);
- assert.match(root,/ornate\.css\?v=074/);
- assert.ok(root.lastIndexOf('ornate.css')>root.lastIndexOf('novella.css'));
+ assert.ok(root.indexOf('/* ============ ornate.css')>root.indexOf('/* ============ novella.css')); 
  assert.match(css,/qtc-economy \.qtc-frame-art/);
  assert.match(css,/@media\(max-width:359px\)/);
 });
